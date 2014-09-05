@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :comments
+  #resources :comments     #Now users can't access comments! Commented out after change to @comment changes in "comments_controller.rb"
 
   resources :posts do
     resources :comments

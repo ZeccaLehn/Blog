@@ -24,11 +24,12 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @comment = Comment.new(comment_params)
+    @post = Post.find(params[:post_id]) #links new comments to associated posts
+    @comment = @post.comments.create(comment_params) #Removed "Comment.new" to retrieve commment params w/"@post.comments.create"
 
     respond_to do |format|
-      if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+      if @comment.save #Took out @comment so save is redirected to post page
+        format.html { redirect_to @post, notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
       else
         format.html { render :new }
