@@ -31,10 +31,10 @@ class CommentsController < ApplicationController
       if @comment.save #Took out @comment so save is redirected to post page
         format.html { redirect_to @post, notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
-        format.js #create.js.erb -- called with asynchronis request
       end
     end
   end
